@@ -91,6 +91,7 @@ export default function NurseList() {
                 <table className='table_view'>
                     <thead>
                         <tr>
+                            <th onClick={() => sortBy('id')}>ID</th>
                             <th onClick={() => sortBy('name')}>Name</th>
                             <th onClick={() => sortBy('licenseNo')}>License No</th>
                             <th onClick={() => sortBy('dob')}>DOB</th>
@@ -101,6 +102,7 @@ export default function NurseList() {
                     <tbody>
                         {nurses.map(nurse => (
                             <tr key={nurse.id}>
+                                <td>{nurse.id}</td>
                                 <td>{nurse.name}</td>
                                 <td>{nurse.licenseNo}</td>
                                 <td>{formatDate(nurse.dob)}</td>

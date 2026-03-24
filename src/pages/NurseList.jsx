@@ -55,7 +55,7 @@ export default function NurseList() {
             const method = isEdit ? axios.put : axios.post;
             const url = isEdit
                 ? `${API_BASE_URL}/nurses/update/${id}`
-                : `${API_BASE_URL}/nurses`;
+                : `${API_BASE_URL}/nurses/save`;
             const response = await method(url, nurseData);
             if (response.status === 200) {
                 alert('Nurse added successfully');
@@ -95,7 +95,7 @@ export default function NurseList() {
                             <th onClick={() => sortBy('licenseNo')}>License No</th>
                             <th onClick={() => sortBy('dob')}>DOB</th>
                             <th onClick={() => sortBy('age')}>Age</th>
-                            <th>Actions</th>
+                            <th className=''>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -105,7 +105,7 @@ export default function NurseList() {
                                 <td>{nurse.licenseNo}</td>
                                 <td>{formatDate(nurse.dob)}</td>
                                 <td>{nurse.age}</td>
-                                <td className='action_col'>
+                                <td >
                                     <button className='action_btn edit_btn' onClick={() => setEditData(nurse)}><i className="fa-solid fa-pencil"></i></button>
                                     <button className='action_btn delete_btn' onClick={()=>handleDelete(nurse)}><i className="fa-regular fa-trash-can"></i></button>
                                 </td>

@@ -98,7 +98,18 @@
     }
   }
 }
-
+.download_btn {
+    background: white;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: #000;
+    text-decoration: none;
+    margin-right: 11px;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+}
 .add_new_btn {
   background-color: var(--primary-color);
   color: white;

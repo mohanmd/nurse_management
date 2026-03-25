@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AddNurse from './AddNurse';
 import axios from 'axios';
 import moment from 'moment';
+import { CSVLink } from 'react-csv';
 const API_BASE_URL = 'http://localhost:5000/api';
 
 export default function NurseList() {
@@ -67,11 +68,11 @@ export default function NurseList() {
     }
     const handleDelete = async (nurse) => {
         try {
-            const response = await axios.delete(`${API_BASE_URL}/nurses/delete/${nurse.id}`); 
+            const response = await axios.delete(`${API_BASE_URL}/nurses/delete/${nurse.id}`);
             if (response.status === 200) {
                 alert('Nurse deleted successfully');
                 getNurses();
-            }   
+            }
         } catch (error) {
             console.error('Error deleting nurse:', error);
         }
@@ -85,7 +86,11 @@ export default function NurseList() {
         <div className="page_container">
             <div className="page_header">
                 <h2 className='page_title'>Nurse List</h2>
-                <button className='add_new_btn' onClick={handleOpenModal}><i className="fa-solid fa-plus"></i> Add Nurse</button>
+                <div className="header_buttons">
+
+                    <CSVLink data={nurses} filename="data.csv" className='download_btn'> Download CSV</CSVLink>
+                    <button className='add_new_btn' onClick={handleOpenModal}><i className="fa-solid fa-plus"></i> Add Nurse</button>
+                </div>
             </div>
             <div className='table_container'>
                 <table className='table_view'>
@@ -109,7 +114,7 @@ export default function NurseList() {
                                 <td>{nurse.age}</td>
                                 <td >
                                     <button className='action_btn edit_btn' onClick={() => setEditData(nurse)}><i className="fa-solid fa-pencil"></i></button>
-                                    <button className='action_btn delete_btn' onClick={()=>handleDelete(nurse)}><i className="fa-regular fa-trash-can"></i></button>
+                                    <button className='action_btn delete_btn' onClick={() => handleDelete(nurse)}><i className="fa-regular fa-trash-can"></i></button>
                                 </td>
                             </tr>
                         ))}
